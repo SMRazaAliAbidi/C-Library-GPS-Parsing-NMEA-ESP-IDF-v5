@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/main")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/gps_parser")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -394,6 +394,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/cmake_install.cmake")
+  include("C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/cmake_install.cmake")
 endif()
 

@@ -3,25 +3,37 @@
 #include <stdlib.h>
 #include "gps_parser.h"
 
-bool parse_gps_data(const char* ggaPacket, GPSData* gpsData) {
-    // Check the packet type
+gps_data Parse_gps_data(char *msg)
+{
+    gps_data gpsData;
 
+    // Initializing data fields with a default value
+    strcpy(gpsData.time_stamp, field_missing);
+    strcpy(gpsData.latitude, field_missing);
+    strcpy(gpsData.lat_direction, field_missing);
+    strcpy(gpsData.longitude, field_missing);
+    strcpy(gpsData.lon_direction, field_missing);
+    strcpy(gpsData.qual_ind, field_missing);
+    strcpy(gpsData.num_satellites, field_missing);
+    strcpy(gpsData.calculated_checksum, field_missing);
+    strcpy(gpsData.parsed_checksum, field_missing);
+   
     if (strncmp(ggaPacket, "$GPGGA,", 7) != 0)
         return false; // Not a GGA packet
 
     // Extract fields from the packet
     char time[11];
-    char latitude[12];
-    char longitude[14];
-    char longitudeDirection;
+    char latitude[11];
+    char longitude[12];
+    char longitudeDirection, latitudeindicator;
 
-    int result = sscanf(ggaPacket, "$GPGGA,%10[^,],%11[^,],%13[^,],%c", time, latitude, longitude, &longitudeDirection);
-    if (result != 4)
+    int result = sscanf(ggaPacket, "$GPGGA,%10[^,],%10[^,],%c,%11[^,],%c", time, latitude, &latitudeindicator, longitude, &longitudeDirection);
+    if (result != 5)
         return false; // Invalid packet format or missing fields
 
     // Print extracted values
     printf("Time: %s\n", time);
-    printf("Latitude: %s\n", latitude);
+    printf("Latitude: %s %c\n", latitude, latitudeindicator);
     printf("Longitude: %s %c\n", longitude, longitudeDirection);
 
     // Copy extracted values to the GPSData struct

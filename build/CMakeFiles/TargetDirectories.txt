@@ -9,7 +9,7 @@ C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/mo
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/flash.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/encrypted-flash.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/_project_elf_src.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/main.elf.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/gps_parser.elf.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/size.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/size-files.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/CMakeFiles/size-components.dir
@@ -594,10 +594,10 @@ C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/main/
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/main/CMakeFiles/install.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/main/CMakeFiles/install/local.dir
 C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/main/CMakeFiles/install/strip.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/__idf_gps_parse.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/edit_cache.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/rebuild_cache.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/list_install_components.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/install.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/install/local.dir
-C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parse/CMakeFiles/install/strip.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/__idf_gps_parser.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/edit_cache.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/rebuild_cache.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/list_install_components.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/install.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/install/local.dir
+C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/gps_parser/CMakeFiles/install/strip.dir
