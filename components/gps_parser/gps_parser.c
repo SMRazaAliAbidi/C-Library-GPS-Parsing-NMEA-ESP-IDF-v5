@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "gps_parser.h"
+#include <ctype.h> //for the isxdigit function
 
 GpsData parse_gps_data(char *packet)
 {
@@ -37,25 +38,27 @@ GpsData parse_gps_data(char *packet)
         {
             gps_data.checkpass = false;
         }
+
         pre_delimiter = strsep(&post_delimiter, "*");
         post_delimiter = pre_delimiter;
         pre_delimiter = strsep(&post_delimiter, delimiter);
 
         // Parsing time
         pre_delimiter = strsep(&post_delimiter, delimiter);
-        if (!(strcmp(pre_delimiter, "")))
+        if (strcmp(pre_delimiter, "") == 0)
         {
             strcpy(gps_data.time, null_data);
         }
         else
         {
-            // converting time to standard format
+            // Extracting hours, minutes, seconds, and milliseconds
             int hours, minutes, seconds;
             float milliseconds;
             sscanf(pre_delimiter, "%2d%2d%2d.%f", &hours, &minutes, &seconds, &milliseconds);
 
             if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 && seconds >= 0 && seconds <= 59)
             {
+                // Formatting the time string
                 sprintf(gps_data.time, "%02d:%02d:%02d.%03d", hours, minutes, seconds, (int)(milliseconds * 1000));
             }
             else
@@ -110,7 +113,6 @@ GpsData parse_gps_data(char *packet)
     }
     else
         return gps_data;
-    
 }
 
 void calculateChecksum(const char *sentence)
@@ -120,26 +122,29 @@ void calculateChecksum(const char *sentence)
     unsigned char checksum = 0;
 
     // Iterate over each character in the sentence
-    for (int i = 1; sentence[i] != '\0'; i++)
+    for (int i = 1; sentence[i] != '\0' && sentence[i] != '*'; i++)
     {
-        // Exclude the dollar sign '$' and asterisk '*' characters
-        if (sentence[i] != '$' && sentence[i] != '*')
+        // Exclude the dollar sign '$' character
+        if (sentence[i] != '$')
         {
             // XOR each character with the checksum
             checksum ^= sentence[i];
         }
     }
-    ESP_LOGW(TAG, "The checksum is calculated successfully %02X", checksum);
-    sprintf(gps_Data.calc_checksum, "%02X", checksum);
+
+    // Store the calculated checksum in the data structure
+    snprintf(gps_Data.calc_checksum, sizeof(gps_Data.calc_checksum), "%02X", checksum);
+
+    ESP_LOGW(TAG, "The checksum is calculated successfully: %s", gps_Data.calc_checksum);
 }
 
 void parsechecksum(const char *sentence)
-{   
-    
+{
+
     GpsData data;
-    (void)data;
     int ast = 0;
     int j = 0;
+    int CHECKSUM_LENGTH = 3;
 
     // Extracting checksum from the given GGA sentence
     for (int i = 0; sentence[i] != '\0'; i++)
@@ -151,11 +156,16 @@ void parsechecksum(const char *sentence)
         }
         else if (ast)
         {
-            data.parse_checksum[j++] = sentence[i];
+            if (isxdigit((unsigned char)sentence[i])) // Check if character is a valid hexadecimal digit
+            {
+                data.parse_checksum[j++] = sentence[i];
+                if (j >= CHECKSUM_LENGTH - 1) // Stop if reached the maximum length of the checksum
+                    break;
+            }
         }
     }
     data.parse_checksum[j] = '\0';
-    ESP_LOGW(TAG, "The checksum is parsed successfully");
+    ESP_LOGW(TAG, "The checksum is parsed successfully: %s", data.parse_checksum);
 }
 void print_gps_data(const GpsData *data)
 {
