@@ -1,6 +1,7 @@
 #include "gps_parser.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 bool validate_checksum(const char* packet) {
     // Find the start of the checksum
