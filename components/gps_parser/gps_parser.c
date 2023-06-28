@@ -1,10 +1,9 @@
-
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "gps_parser.h"
 
-GpsData parse_gps_data(const char *packet);
+GpsData parse_gps_data(char *packet)
 {
     GpsData gps_data;
 
@@ -16,7 +15,7 @@ GpsData parse_gps_data(const char *packet);
     strcpy(gps_data.longitude_d, null_data);
     strcpy(gps_data.calc_checksum, null_data);
     strcpy(gps_data.parse_checksum, null_data);
-    gps_Data.checkpass = false;
+    gps_data.checkpass = false;
 
     // strsep() delimiter declared comma
     char delimiter[5] = ",";
@@ -29,8 +28,8 @@ GpsData parse_gps_data(const char *packet);
         // Compare Checksums
         calculateChecksum(packet);
         parsechecksum(packet);
-        
-        if (strcmp(gps_Data.parse_checksum, gps_Data.calc_checksum) == 0)
+
+        if (strcmp(gps_data.parse_checksum, gps_data.calc_checksum) == 0)
         {
             gps_data.checkpass = true;
         }
@@ -46,7 +45,7 @@ GpsData parse_gps_data(const char *packet);
         pre_delimiter = strsep(&post_delimiter, delimiter);
         if (!(strcmp(pre_delimiter, "")))
         {
-            strcpy(gps_Data.time, null_data);
+            strcpy(gps_data.time, null_data);
         }
         else
         {
@@ -57,7 +56,7 @@ GpsData parse_gps_data(const char *packet);
 
             if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 && seconds >= 0 && seconds <= 59)
             {
-                sprintf(gps_Data.time, "%02d:%02d:%02d.%03d", hours, minutes, seconds, (int)(milliseconds * 1000));
+                sprintf(gps_data.time, "%02d:%02d:%02d.%03d", hours, minutes, seconds, (int)(milliseconds * 1000));
             }
             else
             {
@@ -107,12 +106,11 @@ GpsData parse_gps_data(const char *packet);
         {
             strcpy(gps_data.longitude_d, pre_delimiter);
         }
-        return gps_Data;
+        return gps_data;
     }
     else
-    {
-        return gps_Data;
-    }
+        return gps_data;
+    
 }
 
 void calculateChecksum(const char *sentence)
@@ -136,8 +134,10 @@ void calculateChecksum(const char *sentence)
 }
 
 void parsechecksum(const char *sentence)
-{
-    GpsData gps_Data;
+{   
+    
+    GpsData data;
+    (void)data;
     int ast = 0;
     int j = 0;
 
@@ -151,9 +151,19 @@ void parsechecksum(const char *sentence)
         }
         else if (ast)
         {
-            gps_Data.parse_checksum[j++] = sentence[i];
+            data.parse_checksum[j++] = sentence[i];
         }
     }
-    gps_Data.parse_checksum[j] = '\0';
+    data.parse_checksum[j] = '\0';
     ESP_LOGW(TAG, "The checksum is parsed successfully");
+}
+void print_gps_data(const GpsData *data)
+{
+    ESP_LOGW(TAG, "GPS Data:");
+    ESP_LOGW(TAG, "Time: %s", data->time);
+    ESP_LOGW(TAG, "Latitude: %s", data->latitude);
+    ESP_LOGD(TAG, "Latitude Direction:     %s\n", data->latitude_d);
+    ESP_LOGW(TAG, "Longitude: %s", data->longitude);
+    ESP_LOGD(TAG, "Longitude Direction:    %s\n", data->longitude_d);
+    printf("Checksum: %s", data->calc_checksum);
 }

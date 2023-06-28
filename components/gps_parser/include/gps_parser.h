@@ -26,17 +26,13 @@ typedef struct gps_data_parser
 
 } GpsData;
 
-GpsData parse_gps_data(const char* packet);
+GpsData parse_gps_data(char* packet);
 
-void print_gps_data(const GpsData *data)
-{
-    ESP_LOGW(TAG, "GPS Data:");
-    ESP_LOGW(TAG, "Time: %s", data->time);
-    ESP_LOGW(TAG, "Latitude: %s", data->latitude);
-    ESP_LOGD(TAG, "Latitude Direction:     %s\n", data->latitude_d);
-    ESP_LOGW(TAG, "Longitude: %s", data->longitude);
-    ESP_LOGD(TAG, "Longitude Direction:    %s\n", data->longitude_d);
-    printf("Checksum: %s", data->calc_checksum);
-}
+
+
+
+void calculateChecksum(const char *sentence);
+void parsechecksum(const char *sentence);
+void print_gps_data(const GpsData *data);
 
 #endif /* GPS_PARSER_H */
