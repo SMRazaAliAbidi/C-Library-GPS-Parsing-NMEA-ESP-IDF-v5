@@ -8,16 +8,25 @@ gps_data Parse_gps_data(char *msg)
     gps_data gpsData;
 
     // Initializing data fields with a default value
-    strcpy(gpsData.time_stamp, field_missing);
-    strcpy(gpsData.latitude, field_missing);
-    strcpy(gpsData.lat_direction, field_missing);
-    strcpy(gpsData.longitude, field_missing);
-    strcpy(gpsData.lon_direction, field_missing);
-    strcpy(gpsData.qual_ind, field_missing);
-    strcpy(gpsData.num_satellites, field_missing);
-    strcpy(gpsData.calculated_checksum, field_missing);
-    strcpy(gpsData.parsed_checksum, field_missing);
+    strcpy(gps_Data.time_stamp, field_missing);
+    strcpy(gps_Data.latitude, field_missing);
+    strcpy(gps_Data.lat_direction, field_missing);
+    strcpy(gps_Data.longitude, field_missing);
+    strcpy(gps_Data.lon_direction, field_missing);
+
+    strcpy(gps_Data.calculated_checksum, field_missing);
+    strcpy(gps_Data.parsed_checksum, field_missing);
    
+   // clears checksum integrity flag 
+    gpsData.check_sum_validated = false;
+
+    // declaring the delimiter for strsep() function
+    char delimiter[5] = ",";
+    // pointer to the 2nd half of the separated string
+    char *post_delimiter = msg;
+    // pointer to the 1st half of the separated string
+    char *pre_delimiter = msg;
+
     if (strncmp(ggaPacket, "$GPGGA,", 7) != 0)
         return false; // Not a GGA packet
 
