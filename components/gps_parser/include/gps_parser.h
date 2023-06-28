@@ -4,12 +4,12 @@
 #include <stdbool.h>
 
 typedef struct {
-    char time[11];
-    double latitude;
-    double longitude;
-    // Add other GPS parameters as needed
-} GPSData;
+    char time[10];
+    char latitude[10];
+    char longitude[11];
+    float altitude;
+} GpsData;
 
-bool parse_gps_data(const char* ggaPacket, GPSData* gpsData);
+bool parse_gps_data(const char* packet, GpsData* data);
 
-#endif  /* GPS_PARSER_H */
+#endif /* GPS_PARSER_H */

@@ -1,84 +1,90 @@
-#include <stdio.h>  // Added for debugging
+#include "gps_parser.h"
 #include <string.h>
 #include <stdlib.h>
-#include "gps_parser.h"
 
-gps_data Parse_gps_data(char *msg)
-{
-    gps_data gpsData;
+bool validate_checksum(const char* packet) {
+    // Find the start of the checksum
+    const char* asterisk = strchr(packet, '*');
+    if (asterisk == NULL)
+        return false;
+    
+    // Calculate the checksum
+    unsigned int checksum = 0;
+    for (const char* c = packet + 1; c < asterisk; ++c)
+        checksum ^= *c;
+    
+    // Parse the provided checksum
+    unsigned int provided_checksum;
+    if (sscanf(asterisk + 1, "%02X", &provided_checksum) != 1)
+        return false;
+    
+    // Compare the calculated and provided checksums
+    return checksum == provided_checksum;
+}
 
-    // Initializing data fields with a default value
-    strcpy(gps_Data.time_stamp, field_missing);
-    strcpy(gps_Data.latitude, field_missing);
-    strcpy(gps_Data.lat_direction, field_missing);
-    strcpy(gps_Data.longitude, field_missing);
-    strcpy(gps_Data.lon_direction, field_missing);
-
-    strcpy(gps_Data.calculated_checksum, field_missing);
-    strcpy(gps_Data.parsed_checksum, field_missing);
-   
-   // clears checksum integrity flag 
-    gpsData.check_sum_validated = false;
-
-    // declaring the delimiter for strsep() function
-    char delimiter[5] = ",";
-    // pointer to the 2nd half of the separated string
-    char *post_delimiter = msg;
-    // pointer to the 1st half of the separated string
-    char *pre_delimiter = msg;
-
-    if (strncmp(ggaPacket, "$GPGGA,", 7) != 0)
-        return false; // Not a GGA packet
-
-    // Extract fields from the packet
-    char time[11];
-    char latitude[11];
-    char longitude[12];
-    char longitudeDirection, latitudeindicator;
-
-    int result = sscanf(ggaPacket, "$GPGGA,%10[^,],%10[^,],%c,%11[^,],%c", time, latitude, &latitudeindicator, longitude, &longitudeDirection);
-    if (result != 5)
-        return false; // Invalid packet format or missing fields
-
-    // Print extracted values
-    printf("Time: %s\n", time);
-    printf("Latitude: %s %c\n", latitude, latitudeindicator);
-    printf("Longitude: %s %c\n", longitude, longitudeDirection);
-
-    // Copy extracted values to the GPSData struct
-    strcpy(gpsData->time, time);
-    gpsData->latitude = atof(latitude);
-
-    // Parse the longitude value
-    float longitudeValue = atof(longitude);
-    int degrees = (int)(longitudeValue / 100);
-    float minutes = longitudeValue - (degrees * 100);
-    gpsData->longitude = degrees + (minutes / 60.0);
-
-    // Adjust longitude based on the direction indicator
-    if (longitudeDirection == 'W' || longitudeDirection == 'w')
-        gpsData->longitude *= -1;
-    // Add code to extract other GGA parameters as needed
-
-    // Validate the checksum
-    int checksumIndex = strlen(ggaPacket) - 2;
-    if (ggaPacket[checksumIndex] != '*')
-        return false; // Invalid packet format
-
-    uint8_t calculatedChecksum = 0;
-    for (int i = 1; i < checksumIndex; i++)
-        calculatedChecksum ^= ggaPacket[i];
-
-    char receivedChecksum[3];
-    strncpy(receivedChecksum, ggaPacket + checksumIndex + 1, 2);
-    receivedChecksum[2] = '\0';
-
-    uint8_t parsedChecksum = strtol(receivedChecksum, NULL, 16);
-    if (calculatedChecksum != parsedChecksum) {
-        printf("Calculated checksum: %02X\n", calculatedChecksum);
-        printf("Received checksum: %02X\n", parsedChecksum);
-        return false; // Checksum mismatch
+bool parse_gps_data(const char* packet, GpsData* data) {
+    // Check if the packet starts with "$GPGGA"
+    if (strncmp(packet, "$GPGGA,", 7) != 0)
+        return false;
+    
+    // Validate packet integrity
+    if (!validate_checksum(packet))
+        return false;
+    
+    // Tokenize the packet using ',' as the delimiter
+    char* token = strtok((char*)packet, ",");
+    
+    // Skip the first six tokens
+    for (int i = 0; i < 6; i++) {
+        token = strtok(NULL, ",");
+        if (token == NULL)
+            return false;
     }
-
+    
+    // Parse the time
+    strncpy(data->time, token, 9);
+    data->time[9] = '\0';
+    
+    // Parse the latitude
+    token = strtok(NULL, ",");
+    if (token == NULL)
+        return false;
+    strncpy(data->latitude, token, 9);
+    data->latitude[9] = '\0';
+    
+    // Parse the latitude hemisphere
+    token = strtok(NULL, ",");
+    if (token == NULL)
+        return false;
+    if (token[0] == 'S')
+        data->latitude[0] = '-';
+    
+    // Parse the longitude
+    token = strtok(NULL, ",");
+    if (token == NULL)
+        return false;
+    strncpy(data->longitude, token, 10);
+    data->longitude[10] = '\0';
+    
+    // Parse the longitude hemisphere
+    token = strtok(NULL, ",");
+    if (token == NULL)
+        return false;
+    if (token[0] == 'W')
+        data->longitude[0] = '-';
+    
+    // Skip the next four tokens
+    for (int i = 0; i < 4; i++) {
+        token = strtok(NULL, ",");
+        if (token == NULL)
+            return false;
+    }
+    
+    // Parse the altitude
+    token = strtok(NULL, ",");
+    if (token == NULL)
+        return false;
+    data->altitude = strtof(token, NULL);
+    
     return true;
 }
