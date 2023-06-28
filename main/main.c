@@ -5,16 +5,8 @@
 #include "esp_log.h"
 #include "gps_parser.h"
 
-static const char *TAG = "gps_parser_example";
+static const char *TAG = "gps_parser";
 
-// Example GPS data handler function
-void handle_gps_data(const GpsData *data) {
-    // Process the parsed GPS data
-    ESP_LOGI(TAG, "Time: %s", data->time);
-    ESP_LOGI(TAG, "Latitude: %s", data->latitude);
-    ESP_LOGI(TAG, "Longitude: %s", data->longitude);
-    ESP_LOGI(TAG, "Altitude: %.1f", data->altitude);
-}
 
 void app_main() {
     // Example GPS data packet
@@ -22,10 +14,14 @@ void app_main() {
     
     // Parse GPS data
     GpsData data;
-    if (parse_gps_data(packet, &data)) {
-        // Display parsed GPS data
-        handle_gps_data(&data);
-    } else {
-        ESP_LOGE(TAG, "Failed to parse GPS data!");
+    data = parse_gps_data(packet);
+    if(data.checkpass)
+    {
+        ESP_LOGW(TAG, "Checksum is Validateed.\n");
     }
+    else{
+        ESP_LOGW(TAG, "Checksum Error.\n");
+    }
+
+  print_gps_data(&data);
 }

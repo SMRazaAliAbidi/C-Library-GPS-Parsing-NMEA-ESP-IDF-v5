@@ -1,11 +1,11 @@
 # ninja log v5
 32	97	7095156367135227	project_elf_src_esp32.c	789363124bef23b6
 10699	10993	7095156475598448	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/i2c_periph.c.obj	5a53a4c0c99751b4
-32	97	7095156367135227	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/project_elf_src_esp32.c	789363124bef23b6
-21997	22632	7095156591866882	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/pkcs7.c.obj	67d12b46aa625cbf
-4248	5259	7095156417834009	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/cpu_start.c.obj	9a51a9bad9d453f9
 64706	65545	7095157021122594	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_peer/eap_peap.c.obj	a640cdc7f7a4495f
 4002	4847	7095156413766516	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/xt_wdt.c.obj	e100a23783060622
+21997	22632	7095156591866882	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/pkcs7.c.obj	67d12b46aa625cbf
+32	97	7095156367135227	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/project_elf_src_esp32.c	789363124bef23b6
+4248	5259	7095156417834009	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/cpu_start.c.obj	9a51a9bad9d453f9
 8874	9286	7095156457909351	esp-idf/hal/CMakeFiles/__idf_hal.dir/esp32/touch_sensor_hal.c.obj	87e7cbeaa5f61bd9
 40	108	7095156367275140	esp-idf/esp_system/ld/memory.ld	c4b7a28d628d0798
 131	698	7095156372691814	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_mod.c.obj	c555922976070b85
@@ -31,7 +31,7 @@
 47814	48440	7095156850417689	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/memp.c.obj	625466d881f45306
 114	759	7095156373571258	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/aria.c.obj	4423bfe9a006ec8a
 10374	10910	7095156474718991	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/dac_periph.c.obj	8945c8c839156ff9
-55	268	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.elf	c6836bdec6e4307
+64	432	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.elf	c6836bdec6e4307
 5632	6253	7095156428647352	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/expression_with_stack.c.obj	d4238b9c7a3d5114
 520	1267	7095156378458268	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/bignum_core.c.obj	ac5947fe01e0a393
 96286	97476	7095157340058530	esp-idf/driver/CMakeFiles/__idf_driver.dir/gpio/rtc_io.c.obj	1503b00aaffad6f0
@@ -61,9 +61,9 @@
 114251	114731	7095157512892146	esp-idf/wear_levelling/CMakeFiles/__idf_wear_levelling.dir/Partition.cpp.obj	5c22fcc6b7dbc651
 1268	1751	7095156383205328	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/ccm.c.obj	c6760ffc6f215900
 120925	121092	7095157577132566	esp-idf/gps_parse/libgps_parse.a	aca96a63acbf65dd
+64	432	7095157114884861	bootloader/bootloader.elf	c6836bdec6e4307
 42306	45107	7095156817048239	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_types.cpp.obj	62c5a243e04965d1
 2752	3015	7095156395707649	esp-idf/hal/CMakeFiles/__idf_hal.dir/sdm_hal.c.obj	25ca683cd4c4d76
-55	268	7095157114884861	bootloader/bootloader.elf	c6836bdec6e4307
 5668	6013	7095156425749139	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/expression_with_stack_asm.S.obj	502176121dcc95ca
 2512	3248	7095156398455938	esp-idf/hal/CMakeFiles/__idf_hal.dir/sdio_slave_hal.c.obj	2b260362cb0d0a02
 59718	60563	7095156971573097	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/ap/ieee802_1x.c.obj	79e0b57bb585d641
@@ -129,7 +129,7 @@
 50531	51353	7095156879409837	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/core/ipv4/igmp.c.obj	d43a4a2e135478da
 114778	115541	7095157521187045	esp-idf/sdmmc/CMakeFiles/__idf_sdmmc.dir/sdmmc_cmd.c.obj	c271d5265b6f6acc
 5263	5805	7095156423800342	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/soc/esp32/cache_err_int.c.obj	665759434a6e607c
-5403	5516	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f6c8ba71dbd6a1c
+5407	5523	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f6c8ba71dbd6a1c
 5692	6322	7095156429137055	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/port/arch/xtensa/esp_ipc_isr.c.obj	a0c44eb97767d04f
 46266	47005	7095156835616798	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/apps/sntp/sntp.c.obj	95f8cc73e66e0723
 67019	67674	7095157042519417	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/utils/ext_password.c.obj	d73bfe73442e4011
@@ -245,7 +245,7 @@
 14295	15143	7095156515803700	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/oid.c.obj	b11e35d34a047e2f
 96386	97666	7095157342127263	esp-idf/driver/CMakeFiles/__idf_driver.dir/gpio/gpio.c.obj	693f8ae2241a12e5
 15936	16411	7095156529944986	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/md.c.obj	495a7eebdf7041f2
-63	216	7096635162810430	esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj	15bc45f71771d2ce
+64	222	7096693774834551	esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj	10371336bdc6da1a
 10920	11469	7095156479965765	esp-idf/soc/CMakeFiles/__idf_soc.dir/esp32/rtc_io_periph.c.obj	82a82e5312aacf0
 38882	39677	7095156762691695	esp-idf/esp_event/CMakeFiles/__idf_esp_event.dir/esp_event_private.c.obj	1c212de490d0ee32
 58272	59834	7095156964107693	esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/lwip/esp_netif_lwip.c.obj	e8ec4aae79bb35b
@@ -273,7 +273,7 @@
 11841	12446	7095156490139507	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/clk_ctrl_os.c.obj	ccc5483cd38748df
 30937	31581	7095156681561641	esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_local_storage.c.obj	9c29fda10e1e9b13
 52032	52727	7095156893071434	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/slipif.c.obj	28a208bff982bdda
-55	268	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
+64	432	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
 11822	12466	7095156490509278	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/esp_clk.c.obj	a698193605db2737
 30476	31135	7095156677464168	esp-idf/pthread/CMakeFiles/__idf_pthread.dir/pthread_cond_var.c.obj	b466bdaa3d634557
 28795	29383	7095156659755077	esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/spi_flash_chip_th.c.obj	869368d06d4bc96a
@@ -314,7 +314,7 @@
 25454	26114	7095156626845332	esp-idf/esp_partition/CMakeFiles/__idf_esp_partition.dir/partition.c.obj	ff12f4e11425bf60
 13871	14433	7095156509587529	esp-idf/esp_hw_support/CMakeFiles/__idf_esp_hw_support.dir/port/esp32/rtc_time.c.obj	7319f47759019ab3
 40465	43514	7095156800658321	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_page.cpp.obj	574a81cbb96c3a08
-55	268	7095157114884861	bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
+64	432	7095157114884861	bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
 24371	24866	7095156613963268	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls13_server.c.obj	a613e486f21e7c55
 54944	55524	7095156920674426	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/netif/ppp/ipv6cp.c.obj	18d931e1e8033e35
 14307	14959	7095156515493891	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/pk_wrap.c.obj	1caa488ed8560b02
@@ -359,7 +359,7 @@
 18196	19066	7095156556408705	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_hash.c.obj	a211afae8fb38ab6
 45626	46266	7095156828181376	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/lwip/src/api/err.c.obj	85796db0c599557f
 18671	19302	7095156558867187	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_ecp.c.obj	428b74ea179b4e09
-227	306	7096641402322684	esp-idf/gps_parser/libgps_parser.a	64f08b762332f1b6
+229	305	7096643872671038	esp-idf/gps_parser/libgps_parser.a	64f08b762332f1b6
 76557	78426	7095157149163755	esp-idf/esp_adc/CMakeFiles/__idf_esp_adc.dir/adc_continuous.c.obj	ef885fee9e15a77e
 18528	19382	7095156558837211	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/psa_crypto_driver_wrappers.c.obj	b2e92464f6cec094
 27482	28032	7095156646323340	esp-idf/esp_system/CMakeFiles/__idf_esp_system.dir/esp_err.c.obj	394557ab68838896
@@ -390,7 +390,7 @@
 56294	57207	7095156937643982	esp-idf/lwip/CMakeFiles/__idf_lwip.dir/port/esp32/debug/lwip_debug.c.obj	b859b74189c56a91
 21221	21881	7095156584601348	esp-idf/bootloader_support/CMakeFiles/__idf_bootloader_support.dir/src/bootloader_common.c.obj	1aba5a6caa7ae59c
 21134	21949	7095156584681287	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/Abidi/esp/esp-idf/components/mbedtls/port/aes/block/esp_aes.c.obj	9732737f573e2649
-4259	5081	7096641449927162	gps_parser.elf	bcf625c37854b6c2
+4195	5078	7096643920239782	gps_parser.elf	bcf625c37854b6c2
 78950	80113	7095157166862875	esp-idf/esp_eth/CMakeFiles/__idf_esp_eth.dir/src/esp_eth_phy_rtl8201.c.obj	f7c27628aaee8bc7
 37614	38243	7095156748280569	esp-idf/esp_timer/CMakeFiles/__idf_esp_timer.dir/src/esp_timer_impl_lac.c.obj	8a807dc491883f7d
 21474	22077	7095156586140396	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedcrypto.dir/C_/Users/Abidi/esp/esp-idf/components/mbedtls/port/md/esp_md.c.obj	7a3945c4ee90aa2e
@@ -405,7 +405,7 @@
 22525	23114	7095156596663922	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509_csr.c.obj	a1aa344a2a966442
 104888	105412	7095157419899380	esp-idf/app_trace/CMakeFiles/__idf_app_trace.dir/gcov/gcov_rtio.c.obj	ccf636bbf595436e
 22642	23424	7095156598892546	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedx509.dir/x509write_csr.c.obj	6590fc9e1d206478
-5082	5402	7096641453297015	.bin_timestamp	d146561cc3b183e7
+5078	5406	7096643923687893	.bin_timestamp	d146561cc3b183e7
 22826	23448	7095156599791989	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_ciphersuites.c.obj	7662be503b136cce
 23126	23489	7095156600691437	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_trace.c.obj	53fdf286aa648fa7
 23213	23688	7095156602670224	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/mps_reader.c.obj	62116aa5e37ef093
@@ -424,7 +424,7 @@
 24687	25604	7095156621848409	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/ssl_tls12_client.c.obj	246c661423106477
 42417	42995	7095156795871271	esp-idf/esp_phy/CMakeFiles/__idf_esp_phy.dir/src/phy_override.c.obj	57ae4bd5f4e1180
 60645	61517	7095156981037266	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/common/wpa_common.c.obj	d63566ec950b34bf
-5403	5516	0	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f6c8ba71dbd6a1c
+5407	5523	0	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f6c8ba71dbd6a1c
 58717	59318	7095156959140749	esp-idf/esp_netif/CMakeFiles/__idf_esp_netif.dir/esp_netif_objects.c.obj	1f66571c1860d2f4
 24874	25716	7095156622647912	esp-idf/mbedtls/mbedtls/library/CMakeFiles/mbedtls.dir/C_/Users/Abidi/esp/esp-idf/components/mbedtls/port/net_sockets.c.obj	4afc73ea89ecbebb
 64333	65047	7095157016435477	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/eap_common/eap_wsc_common.c.obj	d64e3879f57a9227
@@ -454,7 +454,7 @@
 28025	28402	7095156649781214	esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_ota_app_desc.c.obj	2c264cc1b7604a5b
 100526	101214	7095157377815279	esp-idf/driver/CMakeFiles/__idf_driver.dir/mcpwm/mcpwm_fault.c.obj	e0ac42532ff110b7
 28011	28594	7095156650850557	bootloader-prefix/src/bootloader-stamp/bootloader-download	f000ea8e0622bb7f
-306	4258	7096641441559222	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/esp_system/ld/sections.ld	cd6e6b54631e0a8f
+305	4194	7096643911202354	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/esp_system/ld/sections.ld	cd6e6b54631e0a8f
 28220	28700	7095156652309656	esp-idf/spi_flash/CMakeFiles/__idf_spi_flash.dir/flash_brownout_hook.c.obj	e0a21a3273abcaaf
 106731	107342	7095157439437354	esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_dbl.c.obj	292b62454117584
 28032	28767	7095156653129152	esp-idf/app_update/CMakeFiles/__idf_app_update.dir/esp_ota_ops.c.obj	93ecfd0de5ca3ec2
@@ -509,9 +509,9 @@
 32681	33477	7095156700250146	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/port_common.c.obj	a20a5e9cd63a968c
 33108	33613	7095156701859156	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/xtensa_overlay_os_hook.c.obj	dd310e144ee3251f
 33492	33843	7095156704457553	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/portable/xtensa/xtensa_init.c.obj	6609b1043ed35cac
-69483	70279	7095157068523412	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpas_glue.c.obj	a2e6dbc869e02d2d
 31093	34245	7095156708305182	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_handle_locked.cpp.obj	59a2906f831b41cd
 105533	106168	7095157426665205	esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_utils_cache.c.obj	7ae05519fd23d42c
+69483	70279	7095157068523412	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/esp_supplicant/src/esp_wpas_glue.c.obj	a2e6dbc869e02d2d
 33849	34597	7095156711233387	esp-idf/freertos/CMakeFiles/__idf_freertos.dir/FreeRTOS-Kernel/event_groups.c.obj	ae61a85e65b72dbc
 31582	34633	7095156711952934	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_partition_manager.cpp.obj	8d3b763db1178145
 31623	34667	7095156712342701	esp-idf/nvs_flash/CMakeFiles/__idf_nvs_flash.dir/src/nvs_handle_simple.cpp.obj	10db827d49ad0be
@@ -642,7 +642,7 @@
 62305	63185	7095156997717005	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/ms_funcs.c.obj	8c282e21fa5495f7
 62289	63206	7095156997796956	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/dh_groups.c.obj	601ec9880c397930
 63078	63710	7095157003063708	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha256-prf.c.obj	f0868ebd5ce92333
-55	268	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.bin	c6836bdec6e4307
+64	432	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.bin	c6836bdec6e4307
 94485	94634	7095157312583144	esp-idf/mbedtls/mbedtls/library/libmbedcrypto.a	41362a605e086ce1
 63004	63738	7095157003393507	esp-idf/wpa_supplicant/CMakeFiles/__idf_wpa_supplicant.dir/src/crypto/sha384-tlsprf.c.obj	a6233563263427f3
 86819	88237	7095157248272745	esp-idf/esp_http_server/CMakeFiles/__idf_esp_http_server.dir/src/httpd_txrx.c.obj	47c558a20768cb2f
@@ -685,7 +685,7 @@
 73225	73701	7095157102862265	esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/coexist.c.obj	87d58c383b11660d
 107739	108215	7095157447562343	esp-idf/console/CMakeFiles/__idf_console.dir/argtable3/arg_utils.c.obj	e3df8da4c205f01a
 73241	73792	7095157103701745	esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/mesh_event.c.obj	f3b9fea780786db3
-55	268	7095157114884861	bootloader/bootloader.map	c6836bdec6e4307
+64	432	7095157114884861	bootloader/bootloader.map	c6836bdec6e4307
 73197	73977	7095157105540614	esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/smartconfig_ack.c.obj	11aa0ed4403d9ce9
 73806	74362	7095157109518168	esp-idf/esp_wifi/CMakeFiles/__idf_esp_wifi.dir/src/wifi_default_ap.c.obj	5fc16a28b5c1c518
 429	519	7096632582470064	esp-idf/main/libmain.a	78a2f639d37558f5
@@ -742,8 +742,8 @@
 92082	92301	7095157289117590	esp-idf/esp_event/libesp_event.a	42ebf3bbb6ff77ce
 92302	92404	7095157290206918	esp-idf/esp_timer/libesp_timer.a	f326d1d41bdfb385
 92404	92540	7095157291606068	esp-idf/esp_common/libesp_common.a	d61e41289acebc95
-55	268	7095157114884861	bootloader/bootloader.bin	c6836bdec6e4307
-55	268	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.map	c6836bdec6e4307
+64	432	7095157114884861	bootloader/bootloader.bin	c6836bdec6e4307
+64	432	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.map	c6836bdec6e4307
 92540	92719	7095157292825312	esp-idf/cxx/libcxx.a	c257e27e202ae9c6
 92719	93044	7095157296563005	esp-idf/newlib/libnewlib.a	4a1f821c96d52fb9
 92996	93119	7095157297412484	bootloader-prefix/src/bootloader-stamp/bootloader-done	7f23fe39e169eb55
@@ -757,7 +757,7 @@
 104530	105159	7095157417450885	esp-idf/app_trace/CMakeFiles/__idf_app_trace.dir/app_trace_util.c.obj	a813235ee0c1619e
 119858	120836	7095157573364892	esp-idf/spiffs/libspiffs.a	2136b81c5a77a4ee
 94053	94136	7095157307586235	esp-idf/esp_partition/libesp_partition.a	d7cf629af378d721
-217	350	7096635164069638	esp-idf/esp_app_format/libesp_app_format.a	ac62b9804558836f
+223	340	7096693775913896	esp-idf/esp_app_format/libesp_app_format.a	ac62b9804558836f
 115548	116012	7095157526074008	esp-idf/fatfs/CMakeFiles/__idf_fatfs.dir/port/freertos/ffsystem.c.obj	73fff8671694abba
 94303	94398	7095157310194619	esp-idf/mbedtls/mbedtls/library/libmbedtls.a	bbd5c8a65c77c541
 109570	109923	7095157465161516	esp-idf/esp_lcd/CMakeFiles/__idf_esp_lcd.dir/src/esp_lcd_panel_io.c.obj	c4bde79cd050e5e9
@@ -877,23 +877,14 @@
 120136	120798	7095157573584767	esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/scheme_softap.c.obj	9d5eba24f8ee4222
 355	736	7096631657697923	esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj	f3441ba849f6ce22
 120463	120924	7095157575223749	esp-idf/gps_parse/CMakeFiles/__idf_gps_parse.dir/gps_parser.c.obj	7e6f296581264369
-306	4258	7096641441559222	esp-idf/esp_system/ld/sections.ld	cd6e6b54631e0a8f
-5082	5402	7096641453297015	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/.bin_timestamp	d146561cc3b183e7
-63	225	7096641401523187	esp-idf/gps_parser/CMakeFiles/__idf_gps_parser.dir/gps_parser.c.obj	4d9095c5d3a120bd
-64	228	7096643871881533	esp-idf/gps_parser/CMakeFiles/__idf_gps_parser.dir/gps_parser.c.obj	4d9095c5d3a120bd
-56	265	7095157114884861	bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
-56	265	7095157114884861	bootloader/bootloader.elf	c6836bdec6e4307
-56	265	7095157114884861	bootloader/bootloader.bin	c6836bdec6e4307
-56	265	7095157114884861	bootloader/bootloader.map	c6836bdec6e4307
-56	265	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
-56	265	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.elf	c6836bdec6e4307
-56	265	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.bin	c6836bdec6e4307
-56	265	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.map	c6836bdec6e4307
-229	305	7096643872671038	esp-idf/gps_parser/libgps_parser.a	64f08b762332f1b6
 305	4194	7096643911202354	esp-idf/esp_system/ld/sections.ld	cd6e6b54631e0a8f
-305	4194	7096643911202354	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/esp_system/ld/sections.ld	cd6e6b54631e0a8f
-4195	5078	7096643920239782	gps_parser.elf	bcf625c37854b6c2
-5078	5406	7096643923687893	.bin_timestamp	d146561cc3b183e7
 5078	5406	7096643923687893	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/.bin_timestamp	d146561cc3b183e7
-5407	5523	0	esp-idf/esptool_py/CMakeFiles/app_check_size	7f6c8ba71dbd6a1c
-5407	5523	0	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/esp-idf/esptool_py/CMakeFiles/app_check_size	7f6c8ba71dbd6a1c
+64	228	7096643871881533	esp-idf/gps_parser/CMakeFiles/__idf_gps_parser.dir/gps_parser.c.obj	4d9095c5d3a120bd
+56	369	7095157114884861	bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
+56	369	7095157114884861	bootloader/bootloader.elf	c6836bdec6e4307
+56	369	7095157114884861	bootloader/bootloader.bin	c6836bdec6e4307
+56	369	7095157114884861	bootloader/bootloader.map	c6836bdec6e4307
+56	369	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader-prefix/src/bootloader-stamp/bootloader-build	c6836bdec6e4307
+56	369	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.elf	c6836bdec6e4307
+56	369	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.bin	c6836bdec6e4307
+56	369	7095157114884861	C:/Users/Abidi/Desktop/C-Library-GPS-Parsing-NMEA-ESP-IDF-v5/build/bootloader/bootloader.map	c6836bdec6e4307
