@@ -3,6 +3,11 @@
   "idf.adapterTargetName": "esp32",
   "files.associations": {
     "gps_parser.h": "c",
-    "esp_log.h": "c"
-  }
+    "esp_log.h": "c",
+    "array": "c",
+    "string": "c",
+    "string_view": "c"
+  },
+  "idf.portWin": "COM4",
+  "idf.flashType": "UART"
 }

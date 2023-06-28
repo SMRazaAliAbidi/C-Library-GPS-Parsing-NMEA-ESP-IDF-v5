@@ -2,6 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "esp_log.h"
+
+static const char* TAG = "gps_parser";
 
 bool validate_checksum(const char* packet) {
     // Find the start of the checksum
@@ -23,17 +26,23 @@ bool validate_checksum(const char* packet) {
     return checksum == provided_checksum;
 }
 
-bool parse_gps_data(const char* packet, GpsData* data) {
+    bool parse_gps_data(const char* packet, GpsData* data) {
     // Check if the packet starts with "$GPGGA"
-    if (strncmp(packet, "$GPGGA,", 7) != 0)
+    if (strncmp(packet, "$GPGGA,", 7) != 0) {
+        ESP_LOGE(TAG, "Invalid packet format: %s", packet);
         return false;
+    }
     
     // Validate packet integrity
-    if (!validate_checksum(packet))
+    if (!validate_checksum(packet)) {
+        ESP_LOGE(TAG, "Invalid checksum: %s", packet);
         return false;
-    
+    }
+   
     // Tokenize the packet using ',' as the delimiter
-    char* token = strtok((char*)packet, ",");
+    char* packet_copy = strdup(packet);
+    char* token = strtok(packet_copy, ",");
+
     
     // Skip the first six tokens
     for (int i = 0; i < 6; i++) {
