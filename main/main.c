@@ -5,7 +5,7 @@
 #include "esp_log.h"
 #include "gps_parser.h"
 
-static const char *TAG = "gps_parser";
+//static const char *TAG = "gps_parser";
 
 
 void app_main() {

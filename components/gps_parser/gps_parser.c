@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "esp_log.h"
 
-static const char *TAG = "gps_parser";
+// static const char *TAG = "gps_parser";
 
 GpsData parse_gps_data(const char *packet);
 {
@@ -110,7 +110,10 @@ GpsData parse_gps_data(const char *packet);
         }
         return gpsData;
     }
-    return gpsData;
+    else
+    {
+        return gpsData;
+    }
 }
 
 unsigned char calculateChecksum(const char *sentence)
@@ -130,12 +133,13 @@ unsigned char calculateChecksum(const char *sentence)
         }
     }
     ESP_LOGW(TAG, "The checksum is calculated successfully %02X", checksum);
-    gps_Data.calc_checksum = checksum;
+    sprintf(gps_Data.calc_checksum, "%02X", checksum);
     return checksum;
 }
 unsigned char parsechecksum(const char *sentence)
 {
     GpsData gps_Data;
+    char parse_checksum;
     int ast = 0;
     int j = 0;
 
@@ -162,6 +166,7 @@ unsigned char parsechecksum(const char *sentence)
     else
     {
         ESP_LOGW(TAG, "The checksum is parsed successfully");
-        return gps_Data.parse_checksum;
+        strcpy(parse_checksum, gps_Data.parse_checksum);
+        return parse_checksum;
     }
 }
