@@ -1,10 +1,8 @@
-#include "gps_parser.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "esp_log.h"
-
-// static const char *TAG = "gps_parser";
+#include "gps_parser.h"
 
 GpsData parse_gps_data(const char *packet);
 {
@@ -29,8 +27,9 @@ GpsData parse_gps_data(const char *packet);
     if (!(strncmp(packet, "$GPGGA", 6)))
     {
         // Compare Checksums
-        unsigned char calculatedcheck = calculateChecksum(packet);
-        unsigned char parsedcheck = parsechecksum(packet);
+        calculateChecksum(packet);
+        parsechecksum(packet);
+        
         if (strcmp(gps_Data.parse_checksum, gps_Data.calc_checksum) == 0)
         {
             gps_data.checkpass = true;
@@ -108,15 +107,15 @@ GpsData parse_gps_data(const char *packet);
         {
             strcpy(gps_data.longitude_d, pre_delimiter);
         }
-        return gpsData;
+        return gps_Data;
     }
     else
     {
-        return gpsData;
+        return gps_Data;
     }
 }
 
-unsigned char calculateChecksum(const char *sentence)
+void calculateChecksum(const char *sentence)
 {
     GpsData gps_Data;
 
@@ -134,12 +133,11 @@ unsigned char calculateChecksum(const char *sentence)
     }
     ESP_LOGW(TAG, "The checksum is calculated successfully %02X", checksum);
     sprintf(gps_Data.calc_checksum, "%02X", checksum);
-    return checksum;
 }
-unsigned char parsechecksum(const char *sentence)
+
+void parsechecksum(const char *sentence)
 {
     GpsData gps_Data;
-    char parse_checksum;
     int ast = 0;
     int j = 0;
 
@@ -157,16 +155,5 @@ unsigned char parsechecksum(const char *sentence)
         }
     }
     gps_Data.parse_checksum[j] = '\0';
-
-    if (!(strcmp(gps_Data.parse_checksum, "")))
-    {
-        strcpy(gps_Data.parse_checksum, null_data);
-        strcpy(gps_Data.calc_checksum, "");
-    }
-    else
-    {
-        ESP_LOGW(TAG, "The checksum is parsed successfully");
-        strcpy(parse_checksum, gps_Data.parse_checksum);
-        return parse_checksum;
-    }
+    ESP_LOGW(TAG, "The checksum is parsed successfully");
 }
