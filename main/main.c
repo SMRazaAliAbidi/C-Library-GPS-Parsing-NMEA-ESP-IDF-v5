@@ -15,8 +15,8 @@ void app_main() {
     
     // Parse GPS data
     GpsData data;
-    bool pass = parse_gps_data(packet);
-    if(pass)
+    data = parse_gps_data(packet, data);
+    if(data.checkpass)
     {
         ESP_LOGW(TAG, "Checksum is Validateed.\n");
     }
@@ -24,7 +24,7 @@ void app_main() {
         ESP_LOGW(TAG, "Checksum Error.\n");
     }
 
-if (pass){
+if (data.validstring){
   print_gps_data(data);}
   else{
     ESP_LOGW(TAG, "Error in string parsing.\n");

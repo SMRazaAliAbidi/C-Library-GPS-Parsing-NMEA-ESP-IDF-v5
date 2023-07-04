@@ -4,19 +4,19 @@
 #include "gps_parser.h"
 #include <ctype.h> //for the isxdigit function
 
-bool parse_gps_data(char *packet)
+GpsData parse_gps_data(char *packet, GpsData gps_data)
 {
-    GpsData gps_data;
+    //GpsData gps_data;
 
     // Initializing data fields with a default value
-    /*strcpy(gps_data.time, null_data);
+    strcpy(gps_data.time, null_data);
     strcpy(gps_data.latitude, null_data);
     strcpy(gps_data.latitude_d, null_data);
     strcpy(gps_data.longitude, null_data);
     strcpy(gps_data.longitude_d, null_data);
     strcpy(gps_data.calc_checksum, null_data);
     strcpy(gps_data.parse_checksum, null_data);
-    gps_data.checkpass = false;*/
+    gps_data.checkpass = false;
 
     char time[11];
     char latitude[12];
@@ -27,8 +27,8 @@ bool parse_gps_data(char *packet)
     {
         gps_data.validstring = true; // Packet validity is checked
         // Compare Checksums
-        calculateChecksum(packet);
-        parsechecksum(packet);
+        calculateChecksum(packet, &gps_data);
+        parsechecksum(packet, &gps_data);
 
         if (strcmp(gps_data.parse_checksum, gps_data.calc_checksum) == 0)
         {
@@ -42,13 +42,27 @@ bool parse_gps_data(char *packet)
         int result = sscanf(packet, "$GPGGA,%15[^,],%15[^,],%c,%15[^,],%c", time, latitude, &latitudeDirection, longitude, &longitudeDirection);
         if (result != 5)
         {
-            return false;
+            return gps_data;
         }
         else
         {
             printf("Time: %s\n", time);
             printf("Latitude: %s\n", latitude);
             printf("Longitude: %s %c\n", longitude, longitudeDirection);
+
+            // Parsing the time into standard format:
+            int hours, tminutes, seconds;
+            float milliseconds;
+            sscanf(time, "%2d%2d%2d.%f", &hours, &tminutes, &seconds, &milliseconds);
+
+            if (hours >= 0 && hours <= 23 && tminutes >= 0 && tminutes <= 59 && seconds >= 0 && seconds <= 59)
+            {
+                sprintf(gps_data.time, "%02d:%02d:%02d.%03d", hours, tminutes, seconds, (int)(milliseconds * 1000));
+            }
+            else
+            {
+                strcpy(gps_data.time, "Invalid time format!");
+            }
 
             // Parse the longitude value
             float longitudeValue = atof(longitude);
@@ -63,18 +77,25 @@ bool parse_gps_data(char *packet)
             snprintf(gps_data.latitude_d, sizeof(gps_data.latitude_d), "%c", latitudeDirection);
             snprintf(gps_data.longitude_d, sizeof(gps_data.longitude_d), "%c", longitudeDirection);
         }
-        return true;
+        return gps_data;
     }
     else
     {
-        return false;
+        // cleard the string valiidty flag
+        gps_data.validstring = false;
+
+        // stored invalid string flag in all fields
+        strcpy(gps_data.time, invalid);
+        strcpy(gps_data.latitude, invalid);
+        strcpy(gps_data.latitude_d, invalid);
+        strcpy(gps_data.longitude, invalid);
     }
-    return false;
+    return gps_data;
 }
 
-void calculateChecksum(const char *sentence)
+void calculateChecksum(const char *sentence, GpsData *gps_Data)
 {
-    GpsData gps_Data;
+    //GpsData gps_Data;
 
     unsigned char checksum = 0;
 
@@ -90,15 +111,15 @@ void calculateChecksum(const char *sentence)
     }
 
     // Store the calculated checksum in the data structure
-    snprintf(gps_Data.calc_checksum, sizeof(gps_Data.calc_checksum), "%02X", checksum);
+    snprintf(gps_Data->calc_checksum, sizeof(gps_Data->calc_checksum), "%02X", checksum);
 
-    ESP_LOGW(TAG, "The checksum is calculated successfully: %s", gps_Data.calc_checksum);
+    ESP_LOGW(TAG, "The checksum is calculated successfully: %s", gps_Data->calc_checksum);
 }
 
-void parsechecksum(const char *sentence)
+void parsechecksum(const char *sentence, GpsData *data)
 {
 
-    GpsData data;
+    //GpsData data;
     int ast = 0;
     int j = 0;
     int CHECKSUM_LENGTH = 3;
@@ -115,17 +136,18 @@ void parsechecksum(const char *sentence)
         {
             if (isxdigit((unsigned char)sentence[i])) // Check if character is a valid hexadecimal digit
             {
-                data.parse_checksum[j++] = sentence[i];
+                data->parse_checksum[j++] = sentence[i];
                 if (j >= CHECKSUM_LENGTH - 1) // Stop if reached the maximum length of the checksum
                     break;
             }
         }
     }
-    data.parse_checksum[j] = '\0';
-    ESP_LOGW(TAG, "The checksum is parsed successfully: %s", data.parse_checksum);
+    data->parse_checksum[j] = '\0';
+    ESP_LOGW(TAG, "The checksum is parsed successfully: %s", data->parse_checksum);
 }
-void print_gps_data(const GpsData data)
+void print_gps_data(GpsData data)
 {
+    //GpsData data;
     printf("Time:                   %s\n", data.time);
     printf("Latitude:               %s\n", data.latitude);
     printf("Latitude Direction:     %s\n", data.latitude_d);

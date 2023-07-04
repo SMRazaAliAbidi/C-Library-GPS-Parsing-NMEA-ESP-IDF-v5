@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <esp_log.h>
 
-#define Invalid_data "Invalid Data"
+#define invalid "Invalid Data"
 #define null_data "Null Data"
 
 static const char *TAG = "gps_parser";
@@ -26,10 +26,10 @@ typedef struct gps_data_parser
 
 } GpsData;
 
-bool parse_gps_data(char *packet);
+GpsData parse_gps_data(char *packet, GpsData data);
 
-void calculateChecksum(const char *sentence);
-void parsechecksum(const char *sentence);
-void print_gps_data(const GpsData data);
+void calculateChecksum(const char *sentence, GpsData *data);
+void parsechecksum(const char *sentence, GpsData *data);
+void print_gps_data(GpsData data);
 
 #endif /* GPS_PARSER_H */
