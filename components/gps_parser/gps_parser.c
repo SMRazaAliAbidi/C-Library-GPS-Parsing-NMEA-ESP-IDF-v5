@@ -6,7 +6,7 @@
 
 GpsData parse_gps_data(char *packet, GpsData gps_data)
 {
-    //GpsData gps_data;
+    // GpsData gps_data;
 
     // Initializing data fields with a default value
     strcpy(gps_data.time, null_data);
@@ -46,9 +46,6 @@ GpsData parse_gps_data(char *packet, GpsData gps_data)
         }
         else
         {
-            printf("Time: %s\n", time);
-            printf("Latitude: %s\n", latitude);
-            printf("Longitude: %s %c\n", longitude, longitudeDirection);
 
             // Parsing the time into standard format:
             int hours, tminutes, seconds;
@@ -95,7 +92,7 @@ GpsData parse_gps_data(char *packet, GpsData gps_data)
 
 void calculateChecksum(const char *sentence, GpsData *gps_Data)
 {
-    //GpsData gps_Data;
+    // GpsData gps_Data;
 
     unsigned char checksum = 0;
 
@@ -119,7 +116,7 @@ void calculateChecksum(const char *sentence, GpsData *gps_Data)
 void parsechecksum(const char *sentence, GpsData *data)
 {
 
-    //GpsData data;
+    // GpsData data;
     int ast = 0;
     int j = 0;
     int CHECKSUM_LENGTH = 3;
@@ -147,7 +144,7 @@ void parsechecksum(const char *sentence, GpsData *data)
 }
 void print_gps_data(GpsData data)
 {
-    //GpsData data;
+    // GpsData data;
     printf("Time:                   %s\n", data.time);
     printf("Latitude:               %s\n", data.latitude);
     printf("Latitude Direction:     %s\n", data.latitude_d);
