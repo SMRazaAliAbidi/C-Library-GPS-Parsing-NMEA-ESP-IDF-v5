@@ -4,28 +4,28 @@
 #include "gps_parser.h"
 #include <ctype.h> //for the isxdigit function
 
-GpsData parse_gps_data(char *packet)
+bool parse_gps_data(char *packet)
 {
     GpsData gps_data;
 
     // Initializing data fields with a default value
-    strcpy(gps_data.time, null_data);
+    /*strcpy(gps_data.time, null_data);
     strcpy(gps_data.latitude, null_data);
     strcpy(gps_data.latitude_d, null_data);
     strcpy(gps_data.longitude, null_data);
     strcpy(gps_data.longitude_d, null_data);
     strcpy(gps_data.calc_checksum, null_data);
     strcpy(gps_data.parse_checksum, null_data);
-    gps_data.checkpass = false;
+    gps_data.checkpass = false;*/
 
-    // strsep() delimiter declared comma
-    char delimiter[5] = ",";
-    // pointer to both parts of the separated string
-    char *post_delimiter = packet;
-    char *pre_delimiter = packet;
-
+    char time[11];
+    char latitude[12];
+    char longitude[14];
+    char longitudeDirection;
+    char latitudeDirection;
     if (!(strncmp(packet, "$GPGGA", 6)))
     {
+        gps_data.validstring = true; // Packet validity is checked
         // Compare Checksums
         calculateChecksum(packet);
         parsechecksum(packet);
@@ -39,80 +39,37 @@ GpsData parse_gps_data(char *packet)
             gps_data.checkpass = false;
         }
 
-        pre_delimiter = strsep(&post_delimiter, "*");
-        post_delimiter = pre_delimiter;
-        pre_delimiter = strsep(&post_delimiter, delimiter);
-
-        // Parsing time
-        pre_delimiter = strsep(&post_delimiter, delimiter);
-        if (strcmp(pre_delimiter, "") == 0)
+        int result = sscanf(packet, "$GPGGA,%15[^,],%15[^,],%c,%15[^,],%c", time, latitude, &latitudeDirection, longitude, &longitudeDirection);
+        if (result != 5)
         {
-            strcpy(gps_data.time, null_data);
+            return false;
         }
         else
         {
-            // Extracting hours, minutes, seconds, and milliseconds
-            int hours, minutes, seconds;
-            float milliseconds;
-            sscanf(pre_delimiter, "%2d%2d%2d.%f", &hours, &minutes, &seconds, &milliseconds);
+            printf("Time: %s\n", time);
+            printf("Latitude: %s\n", latitude);
+            printf("Longitude: %s %c\n", longitude, longitudeDirection);
 
-            if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59 && seconds >= 0 && seconds <= 59)
-            {
-                // Formatting the time string
-                sprintf(gps_data.time, "%02d:%02d:%02d.%03d", hours, minutes, seconds, (int)(milliseconds * 1000));
-            }
-            else
-            {
-                strcpy(gps_data.time, "Invalid time format!");
-            }
-        }
-        // Parsing Latitude
-        pre_delimiter = strsep(&post_delimiter, delimiter);
-        if (!(strcmp(pre_delimiter, "")))
-        {
-            strcpy(gps_data.latitude, null_data);
-        }
-        else
-        {
-            strcpy(gps_data.latitude, pre_delimiter);
-        }
+            // Parse the longitude value
+            float longitudeValue = atof(longitude);
+            int degrees = (int)(longitudeValue / 100);
+            float minutes = longitudeValue - (degrees * 100);
+            longitudeValue = degrees + (minutes / 60.0);
 
-        // Parsing latitude direction
-        pre_delimiter = strsep(&post_delimiter, delimiter);
-        if (!(strcmp(pre_delimiter, "")))
-        {
-            strcpy(gps_data.latitude_d, null_data);
+            // Copy the parsed values to the gps_data structure
+            snprintf(gps_data.time, sizeof(gps_data.time), "%s", time);
+            snprintf(gps_data.latitude, sizeof(gps_data.latitude), "%s", latitude);
+            snprintf(gps_data.longitude, sizeof(gps_data.longitude), "%f", longitudeValue);
+            snprintf(gps_data.latitude_d, sizeof(gps_data.latitude_d), "%c", latitudeDirection);
+            snprintf(gps_data.longitude_d, sizeof(gps_data.longitude_d), "%c", longitudeDirection);
         }
-        else
-        {
-            strcpy(gps_data.latitude_d, pre_delimiter);
-        }
-
-        // Parsing longitude
-        pre_delimiter = strsep(&post_delimiter, delimiter);
-        if (!(strcmp(pre_delimiter, "")))
-        {
-            strcpy(gps_data.longitude, null_data);
-        }
-        else
-        {
-            strcpy(gps_data.longitude, pre_delimiter);
-        }
-
-        // Parsing Longitude Direction
-        pre_delimiter = strsep(&post_delimiter, delimiter);
-        if (!(strcmp(pre_delimiter, "")))
-        {
-            strcpy(gps_data.longitude_d, null_data);
-        }
-        else
-        {
-            strcpy(gps_data.longitude_d, pre_delimiter);
-        }
-        return gps_data;
+        return true;
     }
     else
-        return gps_data;
+    {
+        return false;
+    }
+    return false;
 }
 
 void calculateChecksum(const char *sentence)
@@ -167,13 +124,11 @@ void parsechecksum(const char *sentence)
     data.parse_checksum[j] = '\0';
     ESP_LOGW(TAG, "The checksum is parsed successfully: %s", data.parse_checksum);
 }
-void print_gps_data(const GpsData *data)
+void print_gps_data(const GpsData data)
 {
-    ESP_LOGW(TAG, "GPS Data:");
-    ESP_LOGW(TAG, "Time: %s", data->time);
-    ESP_LOGW(TAG, "Latitude: %s", data->latitude);
-    ESP_LOGD(TAG, "Latitude Direction:     %s\n", data->latitude_d);
-    ESP_LOGW(TAG, "Longitude: %s", data->longitude);
-    ESP_LOGD(TAG, "Longitude Direction:    %s\n", data->longitude_d);
-    printf("Checksum: %s", data->calc_checksum);
+    printf("Time:                   %s\n", data.time);
+    printf("Latitude:               %s\n", data.latitude);
+    printf("Latitude Direction:     %s\n", data.latitude_d);
+    printf("Longitude:              %s\n", data.longitude);
+    printf("Longitude Direction:    %s\n", data.longitude_d);
 }

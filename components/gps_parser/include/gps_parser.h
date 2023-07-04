@@ -26,13 +26,10 @@ typedef struct gps_data_parser
 
 } GpsData;
 
-GpsData parse_gps_data(char* packet);
-
-
-
+bool parse_gps_data(char *packet);
 
 void calculateChecksum(const char *sentence);
 void parsechecksum(const char *sentence);
-void print_gps_data(const GpsData *data);
+void print_gps_data(const GpsData data);
 
 #endif /* GPS_PARSER_H */
